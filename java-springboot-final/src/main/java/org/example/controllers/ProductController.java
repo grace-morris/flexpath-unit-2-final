@@ -74,7 +74,7 @@ public class ProductController {
         if (productDao.getProductById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
-        productItem.setId(id);
+        product.setId(id);
         return productDao.updateProduct(product);
     }
 
