@@ -43,6 +43,10 @@ public class ProductController {
      */
     @GetMapping(path = "/{id}")
     public Product get(@PathVariable int id) {
+        if (productDao.getProductById(id) == null)
+        {
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
+        }
         return productDao.getProductById(id);
     }
 
@@ -70,6 +74,7 @@ public class ProductController {
         if (productDao.getProductById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
+        productItem.setId(id);
         return productDao.updateProduct(product);
     }
 
