@@ -19,6 +19,9 @@ jobs:
           java-version: '17'
           distribution: 'adopt'
 
+      - name: Install legacy ncurses library for embedded MariaDB
+        run: sudo apt-get update && sudo apt-get install -y libncurses5
+
       - name: Build
         working-directory: ./java-springboot-final
         run: mvn --batch-mode -DskipTests package
