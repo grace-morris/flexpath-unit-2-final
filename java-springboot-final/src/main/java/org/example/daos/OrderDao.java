@@ -111,7 +111,7 @@ public class OrderDao {
      * @return Order The order object.
      * @throws SQLException If an error occurs while mapping the result set.
      */
-    private User mapToOrder(ResultSet resultSet, int rowNumber) throws SQLException {
+    private Order mapToOrder(ResultSet resultSet, int rowNumber) throws SQLException {
         return new Order(
                 resultSet.getInt("id"),
                 resultSet.getString("username")

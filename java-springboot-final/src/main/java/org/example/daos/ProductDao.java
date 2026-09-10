@@ -100,7 +100,7 @@ public class ProductDao {
      * @return Product The product object.
      * @throws SQLException If an error occurs while mapping the result set.
      */
-    private User mapToProduct(ResultSet resultSet, int rowNumber) throws SQLException {
+    private Product mapToProduct(ResultSet resultSet, int rowNumber) throws SQLException {
         return new Product(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),

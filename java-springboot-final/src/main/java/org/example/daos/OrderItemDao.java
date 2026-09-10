@@ -46,7 +46,7 @@ public class OrderItemDao {
      * @param id the ID of the order item
      * @return OrderItem
      */
-    public OrderItem getOrderItemById(int id) {
+    public OrderItem getOrderItemByOrderId(int id) {
         try {
             return jdbcTemplate.queryForObject("SELECT * FROM order_items WHERE id = ?", this::mapToOrderItem, id);
         } catch (EmptyResultDataAccessException e) {
@@ -111,7 +111,7 @@ public class OrderItemDao {
      * @return OrderItem The orderItem object.
      * @throws SQLException If an error occurs while mapping the result set.
      */
-    private User mapToOrderItem(ResultSet resultSet, int rowNumber) throws SQLException {
+    private OrderItem mapToOrderItem(ResultSet resultSet, int rowNumber) throws SQLException {
         return new OrderItem(
                 resultSet.getInt("id"),
                 resultSet.getInt("order_id"),

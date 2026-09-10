@@ -1,7 +1,7 @@
 package org.example.controllers;
 
-import org.example.models.Order;
-import org.example.daos.OrderDao;
+import org.example.models.OrderItem;
+import org.example.daos.OrderItemDao;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
@@ -32,12 +32,12 @@ public class OrderItemController {
      * @return A list of all order items.
      */
     @GetMapping
-    public List<OrderItem> getAll(@RequestParam(required = false) int orderId) {
+    public List<OrderItem> getAll(@RequestParam(required = false) Integer orderId) {
         if (orderId != null)
         {
-            return orderDao.getOrderItemByOrderId(orderId);
+            return orderItemDao.getOrderItemsByOrderId(orderId);
         }
-        return orderDao.getOrderItems();
+        return orderItemDao.getOrderItems();
     }
 
     /**
@@ -76,8 +76,7 @@ public class OrderItemController {
      */
     @PutMapping(path = "/{id}")
     public Order update(@PathVariable int id, @RequestBody OrderItem orderItem) {
-        OrderItem orderItem = orderItemDao.getOrderItemById(id);
-        if (orderItem == null) {
+        if (orderItemDao.getOrderItemById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
         }
         orderItem.setId(id);

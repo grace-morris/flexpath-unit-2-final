@@ -17,7 +17,6 @@ import java.util.List;
 @RestController
 @CrossOrigin
 @RequestMapping("/api/products")
-@PreAuthorize("hasAuthority('ADMIN')")
 @PreAuthorize("isAuthenticated()")
 public class ProductController {
     /**
@@ -67,9 +66,8 @@ public class ProductController {
      * @return The updated product.
      */
     @PutMapping(path = "/{id}")
-    public Product update(@RequestBody Product product) {
-        Product product = productDao.getProductById(id);
-        if (product == null) {
+    public Product update(@PathVariable int id, @RequestBody Product product) {
+        if (productDao.getProductById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Product not found");
         }
         return productDao.updateProduct(product);

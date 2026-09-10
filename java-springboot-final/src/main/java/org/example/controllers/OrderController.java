@@ -7,6 +7,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.security.access.prepost.PreAuthorize;
 import org.springframework.web.bind.annotation.*;
 import org.springframework.web.server.ResponseStatusException;
+import java.security.Principal;
 
 import java.util.List;
 
@@ -18,7 +19,6 @@ import java.util.List;
 @CrossOrigin
 @RequestMapping("/api/orders")
 @PreAuthorize("isAuthenticated()")
-@PreAuthorize("hasAuthority('ADMIN')")
 public class OrderController {
     /**
      * The order data access object.
@@ -79,8 +79,7 @@ public class OrderController {
      */
     @PutMapping(path = "/{id}")
     public Order update(@PathVariable int id, @RequestBody Order order) {
-        Order order = orderDao.getOrderById(id);
-        if (order == null) {
+        if (order.getOrderById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found");
         }
         order.setId(id);
