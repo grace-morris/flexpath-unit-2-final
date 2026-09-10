@@ -48,12 +48,11 @@ public class OrderItemController {
      */
     @GetMapping(path = "/{id}")
     public OrderItem get(@PathVariable int id) {
-        OrderItem orderitem = orderItemDao.getOrderItemByOrderId(id);
-        if (orderItem == null)
+        if (orderItemDao.getOrderItemByOrderId(id) == null)
         {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
         }
-        return orderItem;
+        return orderItemDao.getOrderItemByOrderId(id);
     }
 
     /**
