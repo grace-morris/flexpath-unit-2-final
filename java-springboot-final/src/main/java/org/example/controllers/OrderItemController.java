@@ -47,8 +47,8 @@ public class OrderItemController {
      * @return The order with the given id.
      */
     @GetMapping(path = "/{id}")
-    public Order get(@PathVariable int id) {
-        OrderItem orderitem = orderItemDao.getOrderItemById(id);
+    public OrderItem get(@PathVariable int id) {
+        OrderItem orderitem = orderItemDao.getOrderItemByOrderId(id);
         if (orderItem == null)
         {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
@@ -75,8 +75,8 @@ public class OrderItemController {
      * @return The updated order item.
      */
     @PutMapping(path = "/{id}")
-    public Order update(@PathVariable int id, @RequestBody OrderItem orderItem) {
-        if (orderItemDao.getOrderItemById(id) == null) {
+    public OrderItem update(@PathVariable int id, @RequestBody OrderItem orderItem) {
+        if (orderItemDao.getOrderItemByOrderId(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
         }
         orderItem.setId(id);
@@ -90,7 +90,7 @@ public class OrderItemController {
      */
     @DeleteMapping(path = "/{id}")
     public int delete(@PathVariable int id) {
-        OrderItem orderItem = orderItemDao.getOrderItemById(id);
+        OrderItem orderItem = orderItemDao.getOrderItemByOrderId(id);
         if (orderItem == null)
         {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");

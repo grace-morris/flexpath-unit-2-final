@@ -63,7 +63,7 @@ public class OrderItemDao {
         String sql = "INSERT INTO order_items (order_id, product_id, quantity) VALUES (?,?,?);";
         jdbcTemplate.update(sql, orderItem.getOrderId(), orderItem.getProductId(), orderItem.getQuantity());
         int newId = jdbcTemplate.queryForObject("SELECT LAST_INSERT_ID();", Integer.class);
-        return getOrderItemById(newId);
+        return getOrderItemByOrderId(newId);
     }
 
     /**
@@ -78,7 +78,7 @@ public class OrderItemDao {
         if (rowsAffected == 0) {
             throw new DaoException("Zero rows affected, expected at least one.");
         } else {
-            return getOrderItemById(orderItem.getId());
+            return getOrderItemByOrderId(orderItem.getId());
         }
     }
 

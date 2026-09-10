@@ -79,7 +79,7 @@ public class OrderController {
      */
     @PutMapping(path = "/{id}")
     public Order update(@PathVariable int id, @RequestBody Order order) {
-        if (order.getOrderById(id) == null) {
+        if (orderDao.getOrderById(id) == null) {
             throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found");
         }
         order.setId(id);
