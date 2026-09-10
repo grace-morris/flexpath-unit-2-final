@@ -52,7 +52,7 @@ public class OrderController {
         Order order = orderDao.getOrderById(id);
         if (order == null)
         {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found")
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Order not found");
         }
         return order;
     }

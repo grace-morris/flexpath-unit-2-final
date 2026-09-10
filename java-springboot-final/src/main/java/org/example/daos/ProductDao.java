@@ -104,7 +104,7 @@ public class ProductDao {
         return new Product(
                 resultSet.getInt("id"),
                 resultSet.getString("name"),
-                resultSet.getBigDecimal("price"),
+                resultSet.getBigDecimal("price")
         );
     }
 }
