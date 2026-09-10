@@ -51,7 +51,7 @@ public class OrderItemController {
         OrderItem orderitem = orderItemDao.getOrderItemById(id);
         if (orderItem == null)
         {
-            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found")
+            throw new ResponseStatusException(HttpStatus.NOT_FOUND, "Item not found");
         }
         return orderItem;
     }
